@@ -11,8 +11,8 @@
 			parent::__construct();
 
 			$this->_name = 'Group End';
-	        $this->set('show_column', 'no');
-	        $this->set('required', 'no');
+			$this->set('show_column', 'no');
+			$this->set('required', 'no');
 		}
 
 	/*-------------------------------------------------------------------------
@@ -22,9 +22,9 @@
 		public function createTable(){
 			return Symphony::Database()->query(
 				"CREATE TABLE IF NOT EXISTS `tbl_entries_data_" . $this->get('id') . "` (
-				  `id` int(11) unsigned NOT NULL auto_increment,
-				  `entry_id` int(11) unsigned NOT NULL,
-				  `value` double default NULL,
+				  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+				  `entry_id` INT(11) UNSIGNED NOT NULL,
+				  `value` DOUBLE DEFAULT NULL,
 				  PRIMARY KEY  (`id`),
 				  KEY `entry_id` (`entry_id`),
 				  KEY `value` (`value`)
@@ -48,7 +48,7 @@
 			return FieldManager::saveSettings($id, $fields);
 		}
 
-		public function processRawFieldData($data, &$status, &$message = NULL, $simulate = false, $entry_id = NULL) {
+		public function processRawFieldData($data, &$status, &$message = null, $simulate = false, $entry_id = null) {
 			$status = self::__OK__;
 
 			return array(
