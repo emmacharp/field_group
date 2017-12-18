@@ -32,9 +32,10 @@
 			);
 		}
 
-		/**
-		 * Save field settings in section editor.
-		 */
+	/*-------------------------------------------------------------------------
+		Settings:
+	-------------------------------------------------------------------------*/
+
 		public function commit() {
 			if(!parent::commit()) return false;
 
@@ -47,13 +48,6 @@
 			$fields['field_id'] = $id;
 			return FieldManager::saveSettings($id, $fields);
 		}
-
-		/**
-		 * Exclude field from DS output.
-		 */
-		public function fetchIncludableElements() {
- 			return null;
- 		}
 
  	/*-------------------------------------------------------------------------
 		Publish:
@@ -70,4 +64,13 @@
 				'value' => ''
 			);
 		}
+
+	/*-------------------------------------------------------------------------
+		Output:
+	-------------------------------------------------------------------------*/
+
+		public function fetchIncludableElements() {
+ 			return null;
+ 		}
+
 	}

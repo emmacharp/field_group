@@ -32,9 +32,10 @@
 			);
 		}
 
-		/**
-		 * Save field settings in section editor.
-		 */
+	/*-------------------------------------------------------------------------
+		Settings:
+	-------------------------------------------------------------------------*/
+
 		public function commit() {
 			if(!parent::commit()) return false;
 
@@ -48,6 +49,10 @@
 			return FieldManager::saveSettings($id, $fields);
 		}
 
+	/*-------------------------------------------------------------------------
+		Publish:
+	-------------------------------------------------------------------------*/
+
 		public function processRawFieldData($data, &$status, &$message = null, $simulate = false, $entry_id = null) {
 			$status = self::__OK__;
 
@@ -56,9 +61,10 @@
 			);
 		}
 
-		/**
-		 * Exclude field from DS output.
-		 */
+	/*-------------------------------------------------------------------------
+		Output:
+	-------------------------------------------------------------------------*/
+
 		public function fetchIncludableElements() {
  			return null;
  		}
