@@ -3,26 +3,59 @@
 	class extension_field_group extends Extension {
 
 		public function uninstall() {
-			Symphony::Database()->query("DROP TABLE `tbl_fields_field_group_start`");
-			Symphony::Database()->query("DROP TABLE `tbl_fields_field_group_end`");
+			$rt1 = Symphony::Database()
+				->drop('tbl_fields_field_group_start')
+				->ifExists()
+				->execute()
+				->success();
+
+			$rt2 = Symphony::Database()
+				->drop('tbl_fields_field_group_end')
+				->ifExists()
+				->execute()
+				->success();
+
+			return $rt1 && $rt2;
 		}
 
 		public function install() {
-			Symphony::Database()->query(
-				"CREATE TABLE IF NOT EXISTS `tbl_fields_field_group_start` (
-					`id` INT(11) NOT NULL AUTO_INCREMENT,
-					`field_id` INT(11) NOT NULL,
-					PRIMARY KEY (`id`)
-				) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;"
-			);
-			Symphony::Database()->query(
-				"CREATE TABLE IF NOT EXISTS `tbl_fields_field_group_end` (
-					`id` INT(11) NOT NULL AUTO_INCREMENT,
-					`field_id` INT(11) NOT NULL,
-					PRIMARY KEY (`id`)
-				) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;"
-			);
-			return true;
+			$rt1 = Symphony::Database()
+				->create('tbl_fields_field_group_start')
+				->ifNotExists()
+				->charset('utf8')
+				->collate('utf8_unicode_ci')
+				->fields([
+					'id' => [
+						'type' => 'int(11)',
+						'auto' => true,
+					],
+					'field_id' => 'int(11)',
+				])
+				->keys([
+					'id' => 'primary',
+				])
+				->execute()
+				->success();
+
+			$rt2 = Symphony::Database()
+				->create('tbl_fields_field_group_end')
+				->ifNotExists()
+				->charset('utf8')
+				->collate('utf8_unicode_ci')
+				->fields([
+					'id' => [
+						'type' => 'int(11)',
+						'auto' => true,
+					],
+					'field_id' => 'int(11)',
+				])
+				->keys([
+					'id' => 'primary',
+				])
+				->execute()
+				->success();
+
+			return $rt1 && $rt2;
 		}
 
 		public function getSubscribedDelegates() {
