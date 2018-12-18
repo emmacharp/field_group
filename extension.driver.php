@@ -22,8 +22,6 @@
 			$rt1 = Symphony::Database()
 				->create('tbl_fields_field_group_start')
 				->ifNotExists()
-				->charset('utf8')
-				->collate('utf8_unicode_ci')
 				->fields([
 					'id' => [
 						'type' => 'int(11)',
@@ -40,8 +38,6 @@
 			$rt2 = Symphony::Database()
 				->create('tbl_fields_field_group_end')
 				->ifNotExists()
-				->charset('utf8')
-				->collate('utf8_unicode_ci')
 				->fields([
 					'id' => [
 						'type' => 'int(11)',
