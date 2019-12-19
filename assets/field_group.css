@@ -1,21 +1,23 @@
+[class*="field-field_group"] {
+	--primary-field-background-color: transparent;
+	border: initial;
+	border-radius: initial;
+}
+
 .field-field_group_start {
-	color: #2f77eb;
-	margin: 0 0 1.5rem;
+	margin-top: var(--standard-outer-rhythm);
+	margin-bottom: var(--standard-inner-rhythm);
+	display: flex;
+	align-items: center;
+	text-indent: var(--spacing-micro);
 }
 
 .field-field_group_end {
-	display: none;
+	margin-top: var(--standard-outer-rhythm);
+	margin-bottom: var(--standard-outer-rhythm);
 }
 
-.field-group {
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	margin: 0 0 3rem;
-	padding: 1.5rem;
-	border: 1px solid #d3dce2;
-}
-
-.field-group > div:last-child,
-.field-group > div:last-child label {
-	margin-bottom: 0!important;
+.field-field_group_end+.field {
+	border-top-left-radius: var(--radius-current);
+	border-top-right-radius: var(--radius-current);
 }
