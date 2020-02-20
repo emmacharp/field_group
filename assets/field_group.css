@@ -1,23 +1,45 @@
 [class*="field-field_group"] {
-	--primary-field-background-color: transparent;
+	background-color: transparent;
 	border: initial;
 	border-radius: initial;
 }
 
 .field-field_group_start {
-	margin-top: var(--standard-outer-rhythm);
-	margin-bottom: var(--standard-inner-rhythm);
-	display: flex;
-	align-items: center;
-	text-indent: var(--spacing-micro);
+	padding-top: var(--standard-outer-rhythm);
+	padding-bottom: var(--standard-inner-rhythm);
 }
 
 .field-field_group_end {
-	margin-top: var(--standard-outer-rhythm);
-	margin-bottom: var(--standard-outer-rhythm);
+	padding-top: var(--standard-outer-rhythm);
+	padding-bottom: var(--standard-outer-rhythm);
 }
 
+
+/* Produces (pseudo-)rounded corners for preceding and following fields --------*/
+/* Relative to current graphical style --------*/
+.field-field_group_start+.field,
 .field-field_group_end+.field {
-	border-top-left-radius: var(--radius-current);
-	border-top-right-radius: var(--radius-current);
+	border-top-left-radius: var(--field-stack-border-radius);
+	border-top-right-radius: var(--field-stack-border-radius);
+}
+
+.field-field_group_start:not(:first-of-type):before,
+.field-field_group_end:not(:first-of-type):before {
+	content: "";
+	background-color: var(--standard-field-background-color);
+	width: 100%;
+	position: absolute;
+	margin-top: calc(-1 * var(--standard-outer-rhythm) - var(--field-stack-border-radius) / 3);
+	border-bottom-left-radius: var(--field-stack-border-radius);
+	border-bottom-right-radius: var(--field-stack-border-radius);
+	height: var(--field-stack-border-radius);
+	border-bottom: 1px solid var(--standard-field-border-color);
+	border-left: 1px solid var(--standard-field-border-color);
+	border-right: 1px solid var(--standard-field-border-color);
+	box-sizing: border-box;
+}
+
+.field:focus-within+.field-field_group_start:before,
+.field:focus-within+.field-field_group_end:before {
+	background-color: var(--standard-field-focus-background-color);
 }
