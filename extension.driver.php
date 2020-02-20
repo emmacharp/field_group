@@ -73,7 +73,6 @@
 			// only proceed on New or Edit publish pages
 			if ($page instanceof contentPublish and in_array($context['page'], array('new', 'edit'))) {
 				$page->addStylesheetToHead(URL . '/extensions/field_group/assets/field_group.css', 'screen', 9001);
-				$page->addScriptToHead(URL . '/extensions/field_group/assets/field_group.js', 9002);
 			}
 		}
 	}
